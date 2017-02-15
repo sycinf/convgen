@@ -11,6 +11,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import assemblyInfra.Register;
+
 public class RegManagerTest {
 
     RegManager subject;
@@ -30,9 +32,8 @@ public class RegManagerTest {
 
     @Test
     public void testRequestReg() {
-        Set<Integer> firstBatch = subject.requestReg(RegType.ASIMDQ, REGNUM/2);
-        Set<Integer> secondBatch = subject.requestReg(RegType.ASIMDQ, REGNUM-REGNUM/2);
-        
+        Set<Register> firstBatch = subject.requestReg(RegType.ASIMDQ, REGNUM/2);
+        Set<Register> secondBatch = subject.requestReg(RegType.ASIMDQ, REGNUM-REGNUM/2);
         assertTrue(firstBatch!=null && secondBatch!=null && firstBatch.size()==REGNUM/2 && secondBatch.size() == REGNUM-REGNUM/2);
         
         
@@ -40,8 +41,8 @@ public class RegManagerTest {
     
     @Test
     public void testReturnReg() {
-        Set<Integer> firstBatch = subject.requestReg(RegType.ASIMDQ, REGNUM/2);
-        Set<Integer> secondBatch = subject.requestReg(RegType.ASIMDQ, REGNUM);
+        Set<Register> firstBatch = subject.requestReg(RegType.ASIMDQ, REGNUM/2);
+        Set<Register> secondBatch = subject.requestReg(RegType.ASIMDQ, REGNUM);
         
         assertTrue(firstBatch!=null && secondBatch==null);
         subject.returnReg(RegType.ASIMDQ, firstBatch);
